@@ -183,7 +183,21 @@ def get_or_save_document(href):
         [
             "pdf",
             "ppt",
+            "pptx",
+            "doc",
             "docx",
+            "xls",
+            "xlsm",
+            "xlsx",
+            "csv",
+            "txt",
+            "rtf",
+            "odt",  # Open Office format for word processing (text) documents
+            "fodt",  # Open Office format for word processing (text) documents
+            "ods",  # Open Office format for spreadsheets
+            "fods",  # Open Office format for spreadsheets
+            "odp",  # Open Office format for presentations
+            "fodp", # Open Office format for presentations
         ],
     ):
         document_file_name = get_document_file_name(href)
