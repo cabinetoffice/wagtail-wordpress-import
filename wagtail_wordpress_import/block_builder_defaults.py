@@ -176,45 +176,24 @@ def document_linker(html):
 
 
 def get_or_save_document(href):
-    file_type = href.split(".")[-1]
-    if file_type in getattr(
-        settings,
-        "",
-        [
-            "pdf",
-            "ppt",
-            "docx",
-        ],
-    ):
-        document_file_name = get_document_file_name(href)
-        existing_document = document_exists(document_file_name)
-        if not existing_document:
-            response, valid, type = fetch_url(href)
-            if valid and (
-                type
-                in getattr(
-                    settings,
-                    "",
-                    [
-                        "application/pdf",
-                        "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-                        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                    ],
-                )
-            ):
-                temp_document = NamedTemporaryFile(delete=True)
-                temp_document.name = document_file_name
-                temp_document.write(response.content)
-                temp_document.flush()
-                retrieved_document = ImportedDocument(
-                    file=File(file=temp_document), title=document_file_name
-                )
-                retrieved_document.save()
-                temp_document.close()
-                return retrieved_document
-            else:
-                print(f"RECEIVED INVALID DOCUMENT RESPONSE: {href}")
-        return existing_document
+    document_file_name = get_document_file_name(href)
+    existing_document = document_exists(document_file_name)
+    if not existing_document:
+        response, valid, type = fetch_url(href)
+        if valid:
+            temp_document = NamedTemporaryFile(delete=True)
+            temp_document.name = document_file_name
+            temp_document.write(response.content)
+            temp_document.flush()
+            retrieved_document = ImportedDocument(
+                file=File(file=temp_document), title=document_file_name
+            )
+            retrieved_document.save()
+            temp_document.close()
+            return retrieved_document
+        else:
+            print(f"RECEIVED INVALID DOCUMENT RESPONSE: {href}")
+    return existing_document
 
 
 # STREAMFIELD BLOCKS
