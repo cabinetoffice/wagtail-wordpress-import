@@ -4,6 +4,14 @@
 
 A package for Wagtail CMS to import WordPress blog content from an XML file into Wagtail.
 
+> [!NOTE]
+> This repo was created as a fork of [torchbox/wagtail-wordpress-import](https://github.com/torchbox/wagtail-wordpress-import) to [implement small changes to vs. the original repo/package](https://github.com/torchbox/wagtail-wordpress-import/compare/main...cabinetoffice:wagtail-wordpress-import:main). \
+> \
+> This fork was used in May 2024 by the Cabinet Office Intranet team to [migrate content](https://technologyprogramme.atlassian.net/browse/CI-1581) in from the Cabinet Office (WordPress) Intranet into the newer Cabinet Office (Wagtail) Intranet.
+
+> [!CAUTION]
+> This repo should not be deleted until [cabinetoffice/co-wagtail-base#318](https://github.com/cabinetoffice/co-wagtail-base/pull/318) is reverted - or at least this forked package no longer a [dependancy of the Cabinet Office (Wagtail) Intranet codebase](https://github.com/cabinetoffice/co-wagtail-base/blob/725d83ffc3a8c107d03d78106011305a5e7d6897/requirements/base.txt#L20).
+
 - [Wagtail WordPress Import](#wagtail-wordpress-import)
   - [Requirements](#requirements)
   - [Compatibility](#compatibility)
